@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Diary
+from diary.models import Diary
 
 
 class DiarySerializer(serializers.HyperlinkedModelSerializer):
