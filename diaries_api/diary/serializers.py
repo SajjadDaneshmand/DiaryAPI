@@ -5,8 +5,12 @@ from rest_framework import serializers
 from diary.models import Diary
 
 
-class DiarySerializer(serializers.HyperlinkedModelSerializer):
+class DiarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Diary
-        fields = ('owner', 'title', 'content', 'created_at')
-        read_only_fields = ('created_at', )
+        fields = ('id', 'owner', 'title', 'content', 'created_at', 'is_public')
+        extra_kwargs = {
+            "is_public": {"write_only": True},
+            "owner": {"read_only": True}
+        }
+
