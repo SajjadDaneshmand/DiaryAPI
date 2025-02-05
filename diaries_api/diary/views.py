@@ -1,3 +1,6 @@
+# dj
+from django.db.models import Q
+
 # rest_framework
 from rest_framework import viewsets, mixins, permissions
 
@@ -20,9 +23,11 @@ class DiaryViewSet(
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsDiaryAccessible, )
 
-    def list(self, request, *args, **kwargs):
-        self.queryset = self.queryset.filter(is_public=True)
-        super().list(request, *args, **kwargs)
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_authenticated:
+            return queryset.filter(Q(is_public=True) | Q(owner=self.request.user))
+        return queryset.filter(is_public=True)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
