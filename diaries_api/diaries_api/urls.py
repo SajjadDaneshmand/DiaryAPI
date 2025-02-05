@@ -22,4 +22,5 @@ urlpatterns = [
     path('diaries/', include('diary.urls')),
     path('users/', include('account.urls')),
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
 ]
