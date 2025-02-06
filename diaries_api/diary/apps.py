@@ -1,3 +1,4 @@
+# dj
 from django.apps import AppConfig
 
 

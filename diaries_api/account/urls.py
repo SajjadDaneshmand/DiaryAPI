@@ -1,4 +1,4 @@
-# django
+# dj
 from django.urls import path, include
 
 # rest_framework

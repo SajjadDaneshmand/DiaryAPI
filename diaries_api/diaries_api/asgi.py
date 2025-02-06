@@ -7,9 +7,12 @@ For more information on this file, see
 https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 """
 
+# standard
 import os
 
+# dj
 from django.core.asgi import get_asgi_application
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'diaries_api.settings')
 
